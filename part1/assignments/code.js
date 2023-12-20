@@ -1,0 +1,10 @@
+const country = "India";
+const continent = "Asia";
+const population = 2000000000;
+const isIsland = false;
+let language = "Hindi";
+console.log(typeof(country));
+console.log(typeof(continent));
+console.log(typeof(population));
+console.log(typeof(isIsland));
+console.log(typeof(language));
