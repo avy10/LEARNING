@@ -67,7 +67,7 @@ const displayMovements = function(movements){
 			<div class="movements__row">
 			<div class="movements__type movements__type--${typeOfAction}">${index + 1} ${typeOfAction}</div>
 			<div class="movements__date">3 days ago</div>
-			<div class="movements__value">${element}</div>
+			<div class="movements__value">${element}€</div>
 			</div>
 		`;
 		containerMovements.insertAdjacentHTML("afterbegin", html);
@@ -194,7 +194,7 @@ btnLoan.addEventListener("click", function(event){
 	inputLoanAmount.blur();
 })
 
-// 21 implementing account closing
+// 21 implementing account closing/deletion
 btnClose.addEventListener("click", function(event){
     event.stopPropagation();
 	event.preventDefault();
@@ -256,3 +256,31 @@ btnSort.addEventListener("click", function(event){
 		displayMovements(currentAccount.movements);
 	}
 })
+
+
+// 25
+
+labelBalance.addEventListener("click", function(){
+	const movementsNodeList = document.querySelectorAll(".movements__value");
+	const movementsNodeListARR = Array.from(movementsNodeList, element => {
+		
+		// return element.textContent;
+		console.log("before",element.textContent);
+		const abc = Number(element.textContent.replace('€', ''));
+		console.log("after",element.textContent);
+		return abc;
+	});
+	console.log(movementsNodeListARR);
+
+	// const movs = movementsNodeListARR.map((element, index, array) => {
+	// 	element.textContent.replace("€", "");
+	// 	Number(element.textContent);
+	// });
+	// console.log(movs);
+
+	// const movementsUI = Array.from(
+    // document.querySelectorAll('.movements__value'),
+    // el => Number(el.textContent.replace('€', ''))
+//   );
+})
+
