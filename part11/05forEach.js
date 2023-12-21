@@ -14,7 +14,7 @@ movements.forEach(function(movement){
 })
 
 // Again, forEach method actually requires a callback function here. So for each, it's technically a higher order function
-// But it's the for each method here that we'll call this callback function. We are not calling it ourselves as follows.
+// But it's the for each method here that we'll call this callback function. We are not calling it ourselves.
 // Now when exactly will forEach actually call this anonymous-callBack function?
 // the forEach method will loop over the array and in each iteration, it will pass in the current element of the array
 // AND THEN it will execute this callBack function.
@@ -33,7 +33,7 @@ movements.forEach(function(movement, index, arr){
     console.log(arr);
 })
 
-// CAUTION: in for of loop, the first item was index and 2nd item was element
+// CAUTION: when we performed for-of loop on an array returned by array.entries() method, the first item was index and 2nd item was element
 // BUT in forEach loop, the first item is element and 2nd item is index and 3rd item is array itself
 
 

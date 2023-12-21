@@ -5,8 +5,11 @@ const kateDogAgeSurvey2 = [10, 5, 6, 1, 4];
 
 const checkDogs= (julieDogAgeSurvey,kateDogAgeSurvey) => {
     let julieDogAgeSurveyDUPLICATE = [...julieDogAgeSurvey];
+    // we can use slice to create shallow copy as well
     // const julieDogAgeSurveyDUPLICATE = julieDogAgeSurvey.slice();
-    julieDogAgeSurveyDUPLICATE.shift();
+    // julieDogAgeSurveyDUPLICATE.shift();
+    // instead of shit() we can do: 
+    julieDogAgeSurveyDUPLICATE.splice(0,1)
     julieDogAgeSurveyDUPLICATE.splice(-2);
     const finalDogs = [...julieDogAgeSurveyDUPLICATE, ...kateDogAgeSurvey];
     console.log(finalDogs);

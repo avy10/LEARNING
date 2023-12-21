@@ -41,7 +41,7 @@ const accounts = [account1, account2, account3, account4];
 const userNamesAvy = accounts.map((element, index, arrray) => element.owner.toLowerCase().split(" ").map((singleName) => singleName[0]).join(""));
 const userNames = accounts.map((element, index, arrray) => {
     const nameComponents = element.owner.toLowerCase().split(" ").map((singleName) => singleName[0]);
-
+	return nameComponents.join("");
 });
 console.log(userNames);
 
