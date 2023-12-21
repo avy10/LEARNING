@@ -189,9 +189,9 @@ btnLoan.addEventListener("click", function(event){
 		displayBalance(currentAccount);
 		displayMovements(currentAccount.movements);
 
-		inputLoanAmount.value = "";
-		inputLoanAmount.blur();
 	}
+	inputLoanAmount.value = "";
+	inputLoanAmount.blur();
 })
 
 // 21 implementing account closing
@@ -215,3 +215,44 @@ btnClose.addEventListener("click", function(event){
 		containerApp.style.opacity = 0;
 	}
 });
+
+// 23 bank wants to calculate overall balance it has i.e. sum of money present in all the account it has
+function avyTotalMoneyCalc(accounts){
+	const allTheMoney = [];
+	accounts.forEach(e => {
+		allTheMoney.push(e.movements);
+	});
+
+    const allTheMoneyFLAT = allTheMoney.flat();
+    const onlyDeposits = allTheMoneyFLAT.filter((element, index, array) => element > 0);
+    const totalMoney = onlyDeposits.reduce((sum, element, index, array) => sum +=element, 0);
+	console.log(totalMoney);
+    // JONAS used maps
+    const accountMovements = accounts.map(element => element.movements);
+    console.log(accountMovements);
+
+    const acountBalance = accounts.map(element => element.movements)
+                                 .flat()
+                                 .reduce((sum, ele) => sum += ele, 0);
+    console.log(acountBalance);
+
+    // FLATMAP
+    const accountBalance2 = accounts.flatMap(ele => ele.movements).reduce((sum, ele) => sum += ele, 0);
+    console.log(accountBalance2);
+}
+
+avyTotalMoneyCalc(accounts);
+
+
+// 24 sort the movements in descending order
+let didWeSort = false;
+btnSort.addEventListener("click", function(event){
+	event.preventDefault();
+	didWeSort = didWeSort === true ? false : true;
+	if(didWeSort){
+		const sortedMovs = currentAccount.movements.slice().sort((a, b) => a - b);
+		displayMovements(sortedMovs);
+	} else if(!didWeSort){
+		displayMovements(currentAccount.movements);
+	}
+})
