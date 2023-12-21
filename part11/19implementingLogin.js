@@ -16,7 +16,6 @@ btnLogin.addEventListener("click", function(event){
 		// clear input fields
 		inputLoginUsername.value = inputLoginPin.value = ""; // care this
 		inputLoginPin.blur();
-        // The blur() method removes focus from an element.
 
 
 	}

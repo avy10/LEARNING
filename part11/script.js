@@ -91,16 +91,16 @@ const addUserName = (accounts) => {
 }
 
 addUserName(accounts);
-accounts.forEach(e => {
-    console.log(e.userName);
-});
+// accounts.forEach(e => {
+//     console.log(e.userName);
+// });
 
 //14 calculating final balance
 const calcPrintBal = function(movements){
 	const balance = movements.reduce(function(accumulator, element, index, array){
 		return accumulator += element;
 	}, 0);
-	console.log(balance);
+	// console.log(balance);
 	return balance;
 
 }
@@ -128,8 +128,8 @@ const displaySummary = function(accountObj){
 
 // 14
 const displayBalance = function(accountObj){
-	const balance = calcPrintBal(accountObj.movements);
-	labelBalance.textContent = `${balance} INR`;
+	accountObj.balance = calcPrintBal(accountObj.movements);
+	labelBalance.textContent = `${accountObj.balance} INR`;
 	displaySummary(accountObj);
 }
 
@@ -157,5 +157,47 @@ btnLogin.addEventListener("click", function(event){
 
 
 	}
-	console.log(currentAccount);
-})
+	// console.log(currentAccount);
+});
+
+// 20 implementing transfers
+btnTransfer.addEventListener("click", function(event){
+    event.preventDefault();
+    const transferAmount = Number(inputTransferAmount.value);
+    console.log(transferAmount)
+    const receiverAcc = accounts.find(acc => acc.userName === inputTransferTo.value);
+    if(receiverAcc && transferAmount > 0 && transferAmount <= currentAccount.balance && receiverAcc.userName !== currentAccount.userName){
+        transferAmount !== 0 && currentAccount.movements.push(-1 * transferAmount);
+        receiverAcc?.movements.push(transferAmount);
+        displayMovements(currentAccount.movements);
+        calcPrintBal(currentAccount.movements);
+        displayBalance(currentAccount);
+    }
+    inputTransferAmount.value = inputTransferTo.value = "";
+    inputTransferTo.blur();
+    btnTransfer.blur();
+    
+});
+
+
+// 
+btnClose.addEventListener("click", function(event){
+    event.stopPropagation();
+	event.preventDefault();
+	const enteredUser = inputCloseUsername.value;
+	const enteredPin = Number(inputClosePin.value);
+    if(enteredUser === currentAccount.userName && enteredPin == currentAccount.pin){
+		const index = accounts.findIndex((acc) => acc.userName === currentAccount.userName);
+		console.log(index);
+		accounts.splice(index, index+1);
+		console.log(accounts);
+
+
+		labelWelcome.textContent = "Log in to get started";
+		inputClosePin.value = inputCloseUsername.value = "";
+		inputClosePin.blur();
+
+		// hide UI
+		containerApp.style.opacity = 0;
+	}
+});
