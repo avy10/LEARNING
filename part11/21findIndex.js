@@ -3,9 +3,24 @@
 
 btnClose.addEventListener("click", function(event){
     event.stopPropagation();
-    const inputAccount = accounts.findIndex(acc => acc.userName === inputCloseUsername.value);
-    
-})
+	event.preventDefault();
+	const enteredUser = inputCloseUsername.value;
+	const enteredPin = Number(inputClosePin.value);
+    if(enteredUser === currentAccount.userName && enteredPin == currentAccount.pin){
+		const index = accounts.findIndex((acc) => acc.userName === currentAccount.userName);
+		console.log(index);
+		accounts.splice(index, index+1);
+		console.log(accounts);
+
+
+		labelWelcome.textContent = "Log in to get started";
+		inputClosePin.value = inputCloseUsername.value = "";
+		inputClosePin.blur();
+
+		// hide UI
+		containerApp.style.opacity = 0;
+	}
+});
 
 
 // how if findIndex different than indexOf
