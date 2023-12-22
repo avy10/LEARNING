@@ -115,4 +115,8 @@ console.log(Number.isFinite("20"));
 console.log(Number.isFinite(+"20"));
 console.log(Number.isFinite(+"20X"));
 console.log(20/0, Number.isFinite(20/0));
-// 
+// infinity false by isNaN() means that 20/0 is a Number. cz NaN is false which means it is a number
+// Infinity false by isFinite() means that 20/0 is not a finite number, which is much more useful and correct info
+
+
+console.log(Number.isFinite(23.00));
