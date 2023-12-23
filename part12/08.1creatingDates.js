@@ -33,3 +33,16 @@ const movementsDates = [
   ];
 
 console.log(movementsDates[0]);
+// z means GMT0 without any daylight savings
+
+// new Date constructor arguments:
+// const date1 = new Date(year, monthIndex, date, hours, minutes, seconds, milliseconds);
+// CAUTION: monthIndex i.e. months are 0-based
+console.log(new Date(2037, 10, 19, 15, 23, 5));
+console.log(new Date(2037, 10, 31));
+
+console.log(new Date(0)); // 0ms after UNIX day
+console.log(new Date(3 * 24 * 60 * 60 * 1000)); //3 days after UNIX Day => timestamp of day number 3, timestamp is expressed in ms
+
+// the dates that we created using new Date are special type of objects, so they have their own methods 
+
