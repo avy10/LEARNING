@@ -1,0 +1,1 @@
+// the first thing that is inserted inside a call stack is the global execution context
