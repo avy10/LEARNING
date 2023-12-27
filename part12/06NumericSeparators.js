@@ -9,7 +9,7 @@ console.log(diameterSS);
 
 const PI = 3.14_15;
 console.log(PI)
-// cannot using numeric separators inside a numStr
+// cannot use numeric separators inside a numStr
 console.log(Number("230_000"));
 // behaviour of numeric separator inside a template litera
 console.log(`${diameterSS}`);
