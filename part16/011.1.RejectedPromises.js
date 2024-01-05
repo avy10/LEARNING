@@ -1,8 +1,9 @@
 // READ ONENOTE
 
-// And to start remember that we promise in which an error happened is a rejected promise.
-// Now actually the only way in which the fetch promise rejects is when the user loses his Internet connection. And so for now, 
-// that's gonna be the only error that we will handle here.
+// remember that the promise in which an error happened is a rejected promise.
+// FOR NOW the only way in which the fetch promise rejects is when the user loses his Internet connection. 
+// The other method is explicitly return a rejected promise using Promise executor function
+// And so for now, network error is gonna be the only error that we will handle here.
 // Now to simulate losing the Internet connection, we can go here to network, and then we can basically change the speed here to offline.
 /* 
 However, when we then reload the page, then basically everything will disappear. 

@@ -82,7 +82,7 @@ const getCountryData = function(country){
                 }
         });
 };
-
+// WE HAVE CHAINED PROMISES IN THE getCountryData function
 getCountryData("portugal");
 getCountryData("usa");
 getCountryData("germany");
@@ -107,6 +107,6 @@ now in the then below the return fetch(`https://restcountries.com/v3.1/name/${ne
     we return 45 as it is, because it not a response by API but a value we are returning manually/explicitly
         the then method ALWAYS RETURNS a promise even when there is no fulfilled promise to return
         however in case of maldives, we get an undefined error and return 45
-        instead of returning a promise, the then method return this 45
+        we are explicitly returning 34 from the then method, instead of returning a promise
 
 */

@@ -42,8 +42,11 @@ const renderError = function (msg) {
 
 const getCountryData = function(country){
     fetch(`https://restcountries.com/v3.1/name/${country}`)
-        .then(response => response.json())
-        .then(data => {
+        .then(response => {
+            console.log(response);
+            return response.json();
+        })
+        .then(data => {}
             renderCountry(data[0]);
             let neighbour;
             try {

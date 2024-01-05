@@ -29,7 +29,7 @@ const renderCountry = function(dataTWO, className = "") {
         </article>
     `;
     const newCountriesContainer = document.createElement("div");
-    newCountriesContainer.classList.add("countries");
+    // newCountriesContainer.classList.add("countries");
     document.querySelector(".container").appendChild(newCountriesContainer);
     newCountriesContainer.innerHTML = html;
     
@@ -68,7 +68,7 @@ const getCountryData = function(country){
             renderError(`Something went wrong 💥💥 ${err.message}. Try again!`);
         })
         .finally(() =>{
-            newCountriesContainer.style.opacity = 1;
+            countriesContainer.style.opacity = 1;
 
         })
 

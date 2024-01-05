@@ -255,7 +255,8 @@ getCountryAndNeighbourData("germany"); */
 
 
 /*  */
-/* 011 code 1 */
+
+// we are gonna fix the "request 404" error that occured when we passed a name of non-exitent country
 const renderCountry = function(dataTWO, className = "") {
     let langKeys = Object.keys(dataTWO.languages);
     let langs = [];
@@ -299,7 +300,10 @@ const renderError = function (msg) {
 
 const getCountryData = function(country){
     fetch(`https://restcountries.com/v3.1/name/${country}`)
-        .then(response => response.json())
+        .then(response => {
+            console.log(response);
+            return response.json();
+        })
         .then(data => {
             renderCountry(data[0]);
             let neighbour;
@@ -333,8 +337,9 @@ const getCountryData = function(country){
 };
 
 btn.addEventListener("click", function(){
-    getCountryData("portugal");
+    getCountryData("bgd");
     // getCountryData("usa");
     // getCountryData("germany");
 })
+
 
