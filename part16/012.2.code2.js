@@ -1,6 +1,5 @@
-// we are gonna fix the "request 404" error that occured when we passed a name of non-exitent country
-
 const renderCountry = function(dataTWO, className = "") {
+    console.log("AM I WORKING")
     let langKeys = Object.keys(dataTWO.languages);
     let langs = [];
     for(let lk of langKeys){
@@ -56,13 +55,18 @@ const getCountryData = function(country){
             try {
                 neighbour = data[0].borders[0];
             } catch (error) {
-                return 45;
+                throw new Error("No neighbour found");
             }
             
             console.log(country, "neighbour", neighbour)
             return fetch(`https://restcountries.com/v3.1/name/${neighbour}`);
         })
-        .then(response => typeof response === "number" ? response : response.json())
+        .then(response =>{
+            if(!response.ok){
+                throw new Error(`Country ${country} Not FOUND in our database. ERROR ${response.status}`)
+            }
+            return typeof response === "number" ? response : response.json()
+        })
         .then(data => {
             console.log("DATA INSIDER", data)
             if(typeof data === "number"){
@@ -84,8 +88,7 @@ const getCountryData = function(country){
 
 btn.addEventListener("click", function(){
     getCountryData("bgd");
-    // getCountryData("usa");
-    // getCountryData("germany");
+    getCountryData("maldives");
+    getCountryData("usa");
+    getCountryData("germany");
 })
-
-

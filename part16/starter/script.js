@@ -257,7 +257,9 @@ getCountryAndNeighbourData("germany"); */
 /*  */
 
 // we are gonna fix the "request 404" error that occured when we passed a name of non-exitent country
+
 const renderCountry = function(dataTWO, className = "") {
+    console.log("AM I WORKING")
     let langKeys = Object.keys(dataTWO.languages);
     let langs = [];
     for(let lk of langKeys){
@@ -298,48 +300,22 @@ const renderError = function (msg) {
   countriesContainer.style.opacity = 1;
 };
 
-const getCountryData = function(country){
-    fetch(`https://restcountries.com/v3.1/name/${country}`)
-        .then(response => {
-            console.log(response);
-            return response.json();
-        })
-        .then(data => {
-            renderCountry(data[0]);
-            let neighbour;
-            try {
-                neighbour = data[0].borders[0];
-            } catch (error) {
-                return 45;
-            }
-            
-            console.log(country, "neighbour", neighbour)
-            return fetch(`https://restcountries.com/v3.1/name/${neighbour}`);
-        })
-        .then(response => typeof response === "number" ? response : response.json())
-        .then(data => {
-            console.log("DATA INSIDER", data)
-            if(typeof data === "number"){
-                alert(data);
-            } else {
-                renderCountry(data[0]);
-            }
-        })
-        .catch(err => {
-            console.error(`${err} 💥💥💥`);
-            renderError(`Something went wrong 💥💥 ${err.message}. Try again!`);
-        })
-        .finally(() =>{
-            countriesContainer.style.opacity = 1;
 
-        })
-
-};
 
 btn.addEventListener("click", function(){
-    getCountryData("bgd");
+    // getCountryData("bgd");
+    // getCountryData("maldives");
+    whereAmI(9999999, 9999999); //for some reason geocode returns a country based on postal code "9999999".
+                                // which is why we had to check for data.hasOwnProperty
+                                // because when geocode returns a response based on postal code the name of city and country are stored inside a standard object
+
+    whereAmI(999999, 999999); // no such country found. instead of giving us status = 404 and ok = false, it returns a response which contains a property called matches,
+                            // and matches is set to null
+                            // we can not get error 404 here like we did in restcountries API
+    whereAmI(52.508, 13.381)
+    whereAmI(19.037, 72.873)
+    whereAmI(-33.933, 18.474)
+
     // getCountryData("usa");
     // getCountryData("germany");
 })
-
-
